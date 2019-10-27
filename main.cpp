@@ -57,7 +57,7 @@
 
 /*MIN OFFSET=1,MAX OFFSET=74*/
 
-#define OBSTACLE_VERTICAL_DIST 8
+#define OBSTACLE_VERTICAL_DIST 7
 
 /*Actually is obstacle max heigth +2. This value in fact represents the #of rows in the "cilinder" of the obstacle*/
 #define OBSTACLE_MAX_HEIGTH 10
@@ -103,7 +103,7 @@ OBSTACLE generateUpperObstacle(int offset,int obstacleHeigth);
 OBSTACLE generateRelativeBottomObstacle(OBSTACLE obstacle);
 SCENARIO generateScenario(void);
 void drawScenario(WINDOW *gameWin,SCENARIO *scenario);
-void drawObastacle(WINDOW *gameWin,OBSTACLE *obstacle);
+void drawObstacle(WINDOW *gameWin,OBSTACLE *obstacle);
 void drawObstacleCouple(WINDOW *gameWin,OBSTACLECOUPLE *obstacleCouple);
 void thick(WINDOW *gameWin,SCENARIO *scenario,int module,BIRD *bird,bool up);
 void updateScenario(SCENARIO *scenario,int module);
@@ -409,11 +409,11 @@ OBSTACLE generateUpperObstacle(int offset,int obstacleHeigth)
 
 void drawObstacleCouple(WINDOW *gameWin,OBSTACLECOUPLE *obstacleCouple)
 {
-    drawObastacle(gameWin,&obstacleCouple->obstacles[0]);
-    drawObastacle(gameWin,&obstacleCouple->obstacles[1]);
+    drawObstacle(gameWin,&obstacleCouple->obstacles[0]);
+    drawObstacle(gameWin,&obstacleCouple->obstacles[1]);
 }
 
-void drawObastacle(WINDOW *gameWin,OBSTACLE *obstacle)
+void drawObstacle(WINDOW *gameWin,OBSTACLE *obstacle)
 {
     for(auto elem:obstacle->positions)
         mvwaddch(gameWin,elem.pos[0],elem.pos[1],'a');
