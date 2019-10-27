@@ -29,7 +29,13 @@
             witdh: 78 chars
             heigth: 22 chars
 
-    TODO: Finish implementing-> bool checkIfTouches(BIRD bird,SCENARIO scenario) function that makes the game restart when the bird touches an obstacle
+    This progam was made with the following purposes:
+    
+    -gain basic game programming experience
+    -practise C++ programming language
+    -challenge myself and have fun!
+
+    P.S:It's clear that points memorization and some functions can be implemented in a more efficient way. Maybe in the future some optimization will be done.
 */
 
 #include <curses.h>
@@ -183,7 +189,28 @@ bool checkIfTouches(BIRD bird,SCENARIO scenario)
         return true;
     }
     
-    //TODO
+    for(int i=0;i<scenario.length-1;i++)
+    {
+        for(int j=scenario.obstacleCouples[i].obstacles[0].length-1;j>=0;j--)
+        {
+            int xObstacle=scenario.obstacleCouples[i].obstacles[0].positions[j].pos[1];
+            int yObstacle=scenario.obstacleCouples[i].obstacles[0].positions[j].pos[0];
+            if((xObstacle==bird.points[0].pos[1] && yObstacle==bird.points[0].pos[0])||(xObstacle==bird.points[1].pos[1] && yObstacle==bird.points[1].pos[0]) )
+            {
+                return true;
+            }
+        }
+
+        for(int j=scenario.obstacleCouples[i].obstacles[1].length-1;j>=0;j--)
+        {
+            int xObstacle=scenario.obstacleCouples[i].obstacles[1].positions[j].pos[1];
+            int yObstacle=scenario.obstacleCouples[i].obstacles[1].positions[j].pos[0];
+            if((xObstacle==bird.points[0].pos[1] && yObstacle==bird.points[0].pos[0])||(xObstacle==bird.points[1].pos[1] && yObstacle==bird.points[1].pos[0]) )
+            {
+                return true;
+            }
+        }
+    }
 
     return false;
 }
@@ -205,7 +232,7 @@ void thick(WINDOW *gameWin,SCENARIO *scenario,int module,BIRD *bird,bool up)
     }
 
     wclear(gameWin);
-    usleep(100000);
+    usleep(90000);
 }
 void updateUpBird(BIRD *bird)
 {
